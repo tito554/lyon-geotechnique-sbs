@@ -1,0 +1,51 @@
+# Lyon
+
+> Geotechnical engineering company in France, providing professional services in soil mechanics, foundation engineering and site investigation.
+
+## Services
+- [Amelioration](https://lyon.geotechnique.sbs/amelioration/)
+- [Analyse Damplification Sismique](https://lyon.geotechnique.sbs/analyse-damplification-sismique/)
+- [Analyse Geotechnique Tunnels Sols](https://lyon.geotechnique.sbs/analyse-geotechnique-tunnels-sols/)
+- [Analyse Lerosion Sols](https://lyon.geotechnique.sbs/analyse-lerosion-sols/)
+- [Analyse Pieux Frottement Lateral](https://lyon.geotechnique.sbs/analyse-pieux-frottement-lateral/)
+- [Analyse Stabilite Pentes](https://lyon.geotechnique.sbs/analyse-stabilite-pentes/)
+- [Analyse Tassement Differentiel](https://lyon.geotechnique.sbs/analyse-tassement-differentiel/)
+- [Au Dilatometre Plat](https://lyon.geotechnique.sbs/au-dilatometre-plat/)
+- [Cbr Laboratoire](https://lyon.geotechnique.sbs/cbr-laboratoire/)
+- [Compression Simple](https://lyon.geotechnique.sbs/compression-simple/)
+- [Conception Colonnes Ballastees](https://lyon.geotechnique.sbs/conception-colonnes-ballastees/)
+- [Conception Compactage Dynamique](https://lyon.geotechnique.sbs/conception-compactage-dynamique/)
+- [Conception Drains Verticaux Prefabriques](https://lyon.geotechnique.sbs/conception-drains-verticaux-prefabriques/)
+- [Conception Fondations Parasismiques](https://lyon.geotechnique.sbs/conception-fondations-parasismiques/)
+- [Conception Jet Grouting](https://lyon.geotechnique.sbs/conception-jet-grouting/)
+- [Conception Murs Soutenement](https://lyon.geotechnique.sbs/conception-murs-soutenement/)
+- [Conception Plate Forme Routiere](https://lyon.geotechnique.sbs/conception-plate-forme-routiere/)
+- [Conception Prechargement Surcharge](https://lyon.geotechnique.sbs/conception-prechargement-surcharge/)
+- [Conception Remblais Routiers](https://lyon.geotechnique.sbs/conception-remblais-routiers/)
+- [Conception Stabilisation Pentes](https://lyon.geotechnique.sbs/conception-stabilisation-pentes/)
+- [Consolidation Œdometrique](https://lyon.geotechnique.sbs/consolidation-œdometrique/)
+- [Drainage Routier Geotechnique](https://lyon.geotechnique.sbs/drainage-routier-geotechnique/)
+- [Essais In Situ](https://lyon.geotechnique.sbs/essais-in-situ/)
+- [Etude Cbr Conception Routiere](https://lyon.geotechnique.sbs/etude-cbr-conception-routiere/)
+- [Etude Mecanique Sols](https://lyon.geotechnique.sbs/etude-mecanique-sols/)
+- [Excavations Souterraines](https://lyon.geotechnique.sbs/excavations-souterraines/)
+- [Exploration](https://lyon.geotechnique.sbs/exploration/)
+- [Fondations](https://lyon.geotechnique.sbs/fondations/)
+- [Fondations Remblais](https://lyon.geotechnique.sbs/fondations-remblais/)
+- [Geophysique](https://lyon.geotechnique.sbs/geophysique/)
+- [Geotechnique Routiere](https://lyon.geotechnique.sbs/geotechnique-routiere/)
+- [Instrumentation Geotechnique](https://lyon.geotechnique.sbs/instrumentation-geotechnique/)
+- [Laboratoire](https://lyon.geotechnique.sbs/laboratoire/)
+- [Pentes Et Murs](https://lyon.geotechnique.sbs/pentes-et-murs/)
+- [Remediation Sols Contamines](https://lyon.geotechnique.sbs/remediation-sols-contamines/)
+- [Sismique](https://lyon.geotechnique.sbs/sismique/)
+- [Standard Penetration Test](https://lyon.geotechnique.sbs/standard-penetration-test/)
+- [Tomographie Sismique](https://lyon.geotechnique.sbs/tomographie-sismique/)
+- [Triaxial](https://lyon.geotechnique.sbs/triaxial/)
+
+## Contact
+- Website: https://lyon.geotechnique.sbs/
+
+## About
+This page provides information about geotechnical engineering services available in France.
+The company complies with local and international standards including ASTM, ISO and country-specific norms.
