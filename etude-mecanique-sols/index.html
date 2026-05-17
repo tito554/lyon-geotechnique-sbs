@@ -97,16 +97,289 @@ details{background:#FFF;border:1px solid #E5E7EB;border-radius:6px;padding:.9rem
   body{background:#FAFAFA!important;color:#18181B!important}
   .navbar .nav{display:flex!important;flex-wrap:nowrap!important;gap:1.2rem!important;align-items:center!important;overflow:visible!important;justify-content:space-between!important}
   main{flex:1!important;min-width:0!important}
-img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet" href="/css/leaflet-d8b6.css"><script src="/js/leaflet-d8b6.js"></script></head><body>
+img{max-width:100%!important;height:auto!important}
+}
+</style><link rel="stylesheet" href="/css/leaflet-d8b6.css"><script src="/js/leaflet-d8b6.js"></script><style id="minimal-fix-v5">
+/* Sticky para navbar específicos (NO header.hero) */
+.topbar, .navbar, .header-top, .main-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1010 !important;
+}
+header.hero, .hero { position: relative !important; }
+/* Dropdowns por encima del hero */
+.dd, .has-dd .dd, .nav-item .dd {
+  z-index: 1100 !important;
+}
+/* Leaflet contained */
+.leaflet-pane { z-index: 400 !important; }
+.leaflet-control { z-index: 800 !important; }
+.leaflet-container { z-index: 1 !important; }
+</style>
+<style id="inline-link-style">
+p a[href^="/"]:not(.cta-btn):not(.hero-cta){color:var(--accent,#2F4F4F) !important;text-decoration:underline !important;text-decoration-color:rgba(29,78,216,.45);text-underline-offset:2px;font-weight:600}
+p a[href^="/"]:not(.cta-btn):not(.hero-cta):hover{text-decoration-color:currentColor;opacity:.85}
+</style>
+<style id="navbar-compact-fix">
+/* Compactar navbar para que el menú entre completo */
+.navbar{padding:.65rem 1rem !important}
+.navbar .nav{gap:.55rem !important}
+.nav-item{font-size:.74rem !important;letter-spacing:.01em !important}
+.nav-item.has-dd .nav-cat-link{padding:.4rem .25rem !important}
+.nav-item.has-dd .nav-arrow{font-size:.7rem !important;margin-left:.15rem !important}
+.cta-btn{padding:.45rem .8rem !important;font-size:.72rem !important;letter-spacing:.03em !important}
+.logo-box,.brand-name,.brand{font-size:.82rem !important}
+.logo-text .main{font-size:.95rem !important}
+.logo-text .sub{font-size:.72rem !important}
+/* Para layouts aberdeen/classic con clase distinta */
+header nav a,.menu a{font-size:.78rem !important}
+@media (max-width:1100px){
+  .nav-item{font-size:.7rem !important}
+  .navbar .nav{gap:.4rem !important}
+  .cta-btn{padding:.4rem .65rem !important;font-size:.68rem !important}
+}
+</style>
+<style id="layout-defensive">
+body{overflow-x:clip;max-width:100vw}
+body>*{max-width:100vw}
+@media (min-width:901px){
+  aside{position:relative}
+  aside+main,aside~main,aside~div>main{margin-left:0}
+  .content-area{display:flex;gap:1rem}
+}
+@media (max-width:900px){
+  aside{width:100% !important;position:static !important;height:auto !important}
+  .navbar{flex-wrap:wrap}
+}
+</style>
+<style id="navbar-fixed-override">
+nav.navbar,.header-top,.main-header{position:fixed !important;top:0 !important;left:0 !important;right:0 !important;z-index:1010 !important}
+body{padding-top:60px}
+.hero,.hero-inner,header.hero{padding-top:1rem !important}
+@media (max-width:900px){body{padding-top:90px}}
+</style>
+<style id="sidebar-hover-fix-v2">
+/* Adaptativo: hover preserva color heredado (white en dark sidebar, dark en light) */
+aside .cat-name:hover,aside .sb-home:hover,aside .cat-sub-wrap a:hover,
+aside nav a:hover{color:inherit !important;text-decoration:underline !important;text-underline-offset:3px}
+aside .cat-name,aside .sb-home,aside nav a{color:inherit}
+/* Bg sutil que funciona en cualquier fondo */
+aside .cat-name:hover,aside .sb-home:hover{background:rgba(127,127,127,.12) !important}
+aside .cat-sub-wrap a:hover{background:rgba(127,127,127,.08) !important}
+</style>
+<style id="cat-toggle-no-box">
+.cat-toggle{width:auto !important;min-width:32px;border:none !important;border-left:none !important;background:transparent !important;box-shadow:none !important;padding:.3rem .5rem !important}
+.cat-toggle:hover{background:rgba(127,127,127,.12) !important}
+.cat-arrow{display:inline-block}
+</style>
+<style id="nav-arrow-no-box">
+.nav-arrow,.nav-arrow:hover,.nav-arrow:focus{background:transparent !important;border:none !important;outline:none !important;padding:0 .15rem !important;color:inherit !important;cursor:pointer !important;box-shadow:none !important}
+</style>
+<style id="post-fixes-v2">
+/* Inline links visibles en prosa */
+p a[href^="/"]:not(.cta-btn):not(.hero-cta):not(.nav-contact-btn){color:var(--accent,#1d4ed8) !important;text-decoration:underline !important;text-decoration-color:rgba(29,78,216,.45);text-underline-offset:2px;font-weight:600}
+p a[href^="/"]:not(.cta-btn):not(.hero-cta):not(.nav-contact-btn):hover{text-decoration-color:currentColor;opacity:.85}
+/* Sidebar hover adaptive */
+aside .cat-name:hover,aside .sb-home:hover,aside .cat-sub-wrap a:hover,
+aside nav a:hover{color:inherit !important;text-decoration:underline !important;text-underline-offset:3px}
+aside .cat-name,aside .sb-home,aside nav a{color:inherit}
+aside .cat-name:hover,aside .sb-home:hover{background:rgba(127,127,127,.12) !important}
+/* Cat-toggle sin caja */
+.cat-toggle{width:auto !important;min-width:32px;border:none !important;border-left:none !important;background:transparent !important;box-shadow:none !important;padding:.3rem .5rem !important}
+.cat-toggle:hover{background:rgba(127,127,127,.12) !important}
+/* Nav-arrow sin caja */
+.nav-arrow,.nav-arrow:hover,.nav-arrow:focus{background:transparent !important;border:none !important;outline:none !important;padding:0 .15rem !important;color:inherit !important;cursor:pointer !important;box-shadow:none !important}
+/* Navbar compacto */
+.navbar{padding:.65rem 1rem !important}
+.navbar .nav{gap:.55rem !important}
+.nav-item{font-size:.74rem !important;letter-spacing:.01em !important}
+.logo-box,.brand-name,.brand{font-size:.82rem !important}
+/* Layout defensive */
+body{overflow-x:clip;max-width:100vw}
+body>*{max-width:100vw}
+</style>
+<style id="srf-header-fix-v1">
+/* === FIX: header SRF truncado (todos los subs srf) — 2026-05-17 ===
+   Diagnóstico: 9 nav-items empujan logo fuera del viewport (body overflow-x:clip corta izq).
+   navbar-fixed-override dejó body{padding-top:60px} huérfano + sidebar-overflow-fix aplicó
+   color:#FFF en nav links (blanco sobre blanco). kill-sticky hizo position:static → OK pero
+   body padding quedó. Fix integral abajo. */
+
+/* 1. Eliminar padding-top huérfano (de navbar-fixed-override) */
+body { padding-top: 0 !important; }
+
+/* 2. Navbar sticky limpio — fondo blanco, z-index alto, sin desborde */
+nav.navbar {
+  position: sticky !important;
+  top: 0 !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  z-index: 1010 !important;
+  overflow: visible !important;
+  background: #FFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: .65rem 1rem !important;
+  gap: .5rem !important;
+}
+
+/* 3. Logo-area: NO squeezear, ancho mínimo garantizado */
+nav.navbar .logo-area {
+  flex-shrink: 0 !important;
+  min-width: 120px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: .6rem !important;
+  overflow: visible !important;
+}
+
+/* 4. Logo-box: visible, color correcto (blanco sobre negro) */
+nav.navbar .logo-box {
+  background: #141414 !important;
+  color: #FFF !important;
+  padding: .35rem .65rem !important;
+  font-size: .85rem !important;
+  font-weight: 900 !important;
+  flex-shrink: 0 !important;
+}
+
+/* 5. Logo-text: color oscuro sobre fondo blanco navbar */
+nav.navbar .logo-text {
+  color: #141414 !important;
+  font-size: .78rem !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  white-space: nowrap !important;
+}
+
+/* 6. Nav items: texto OSCURO (navbar bg es blanco) — anula sidebar-overflow-fix color:#FFF */
+nav.navbar .nav-item,
+nav.navbar .nav-item a,
+nav.navbar .nav-cat-link,
+nav.navbar .nav-item span:not(.dd span) {
+  color: #141414 !important;
+  font-size: .72rem !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+nav.navbar .nav-item a:hover,
+nav.navbar .nav-cat-link:hover {
+  color: #B08D4A !important;
+  text-decoration: none !important;
+}
+
+/* 7. Nav contenedor: flex-wrap para que los items no revienten el ancho */
+nav.navbar .nav {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: .3rem .5rem !important;
+  align-items: center !important;
+  overflow: visible !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  justify-content: flex-end !important;
+}
+
+/* 8. CTA button en navbar (si existe) */
+nav.navbar .cta-btn {
+  color: #141414 !important;
+  background: #B08D4A !important;
+  font-size: .7rem !important;
+  padding: .4rem .75rem !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+/* 9. Dropdown z-index sobre hero */
+nav.navbar .dd {
+  z-index: 1100 !important;
+  color: #141414 !important;
+}
+nav.navbar .dd a {
+  color: #141414 !important;
+  font-size: .82rem !important;
+}
+
+/* 10. Hero posición correcta (NO empujado por padding-top fantasma) */
+header.hero, .hero {
+  position: relative !important;
+  margin-top: 0 !important;
+  padding-top: 3rem !important;
+}
+</style>
+<style id="collapse-final-v6">
+/* === SIDEBAR collapse: respetar JS, no forzar display:block === */
+.cat-sub, .cat-sub-wrap, .nav-cat-sub {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  flex: none !important;
+  position: static !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+/* Sub-items legibles */
+.cat-sub a, .cat-sub-wrap a, .nav-cat-sub a {
+  display: block !important;
+  width: 100% !important;
+  font-size: .82rem !important;
+  line-height: 1.25 !important;
+  padding: .35rem .75rem .35rem 1.5rem !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  box-sizing: border-box !important;
+}
+
+/* === CARLSON: navbar horizontal arrows centrados === */
+.topbar .nav-item, .topnav .nav-item, nav.topbar > a, nav.topnav > a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: .25rem !important;
+  position: relative !important;
+}
+.topbar .nav-arrow, .topbar .cat-arrow, .topnav .nav-arrow, .topnav .cat-arrow,
+.nav-item > .arrow, .nav-item > svg, .nav-item > .triangle {
+  display: inline-flex !important;
+  align-items: center !important;
+  vertical-align: middle !important;
+  margin: 0 0 0 .15rem !important;
+  font-size: .7em !important;
+  line-height: 1 !important;
+  position: static !important;
+  transform: none !important;
+  top: auto !important;
+}
+
+/* === Cat-item flex correcto (cat-name + toggle arrow lado a lado) === */
+.cat-row, .cat-item > a:first-child, details > summary {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+.cat-name {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+.cat-toggle, .cat-arrow {
+  flex-shrink: 0 !important;
+}
+</style>
+</head><body>
 
 <nav class="navbar">
     <div class="logo-area" data-logo-link="1" onclick="window.location.href=\'../\'" style="cursor:pointer;margin-right:2.5rem;flex-shrink:0">
         <div class="logo-box">GE</div>
         <div class="logo-text">Geotechnique</div></a></div>
     <div class="nav">
-        <div class="nav-item has-dd"><a href="../exploration/" class="nav-cat-link">Exploration</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../standard-penetration-test/">Essai SPT (Standard Penetration Test)</a></div></div><div class="nav-item has-dd"><a href="../essais-in-situ/" class="nav-cat-link">Essais in situ</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../au-dilatometre-plat/">Essai au dilatomètre plat (DMT)</a></div></div><div class="nav-item has-dd"><a href="../laboratoire/" class="nav-cat-link">Laboratoire</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../compression-simple/">Essai de compression simple (UCS)</a><a href="../consolidation-œdometrique/">Essai de consolidation œdométrique</a><a href="../cbr-laboratoire/">Essai CBR en laboratoire</a><a href="../triaxial/">Essai triaxial</a><a href="../etude-mecanique-sols/">Étude de mécanique des sols</a></div></div><div class="nav-item has-dd"><a href="../geophysique/" class="nav-cat-link">Géophysique</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../tomographie-sismique/">Tomographie sismique (réfraction/réflexion)</a></div></div><div class="nav-item has-dd"><a href="../fondations/" class="nav-cat-link">Fondations</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-tassement-differentiel/">Analyse de tassement différentiel</a><a href="../fondations-remblais/">Fondations sur remblais (analyse)</a><a href="../conception-fondations-parasismiques/">Conception de fondations parasismiques</a><a href="../analyse-pieux-frottement-lateral/">Analyse pieux: frottement latéral vs. pointe</a></div></div><div class="nav-item has-dd"><a href="../pentes-et-murs/" class="nav-cat-link">Pentes et murs</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-lerosion-sols/">Analyse de l'érosion des sols</a><a href="../analyse-stabilite-pentes/">Analyse de stabilité des pentes</a><a href="../conception-stabilisation-pentes/">Conception de stabilisation des pentes</a><a href="../conception-murs-soutenement/">Conception de murs de soutènement</a></div></div><div class="nav-item has-dd"><a href="../amelioration/" class="nav-cat-link">Amélioration</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../conception-colonnes-ballastees/">Conception de colonnes ballastées (stone columns)</a><a href="../conception-compactage-dynamique/">Conception de compactage dynamique</a><a href="../conception-drains-verticaux-prefabriques/">Conception de drains verticaux préfabriqués</a><a href="../conception-jet-grouting/">Conception de jet grouting</a><a href="../conception-prechargement-surcharge/">Conception de préchargement avec surcharge</a><a href="../instrumentation-geotechnique/">Instrumentation géotechnique (conception et installation)</a><a href="../remediation-sols-contamines/">Remédiation des sols contaminés</a></div></div><div class="nav-item has-dd"><a href="../excavations-souterraines/" class="nav-cat-link">Excavations souterraines</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-geotechnique-tunnels-sols/">Analyse géotechnique pour tunnels en sols mous</a></div></div><div class="nav-item has-dd"><a href="../geotechnique-routiere/" class="nav-cat-link">Géotechnique routière</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../conception-plate-forme-routiere/">Conception de plate-forme routière</a><a href="../conception-remblais-routiers/">Conception de remblais routiers</a><a href="../drainage-routier-geotechnique/">Drainage routier géotechnique</a><a href="../etude-cbr-conception-routiere/">Étude CBR pour conception routière</a></div></div><div class="nav-item has-dd"><a href="../sismique/" class="nav-cat-link">Sismique</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-damplification-sismique/">Analyse d'amplification sismique</a></div></div>
-        <a class="home-btn" href="../" style="background:transparent;border:1px solid currentColor;color:inherit;padding:.5rem .9rem;font-size:.82rem;font-weight:700;text-transform:uppercase;text-decoration:none;border-radius:4px;margin-right:.5rem">ACCUEIL</a><button class="cta-btn" data-email="contact@geotechnique.sbs" type="button">GET IN TOUCH</button>
-    </div>
+        <div class="nav-item has-dd"><a href="../exploration/" class="nav-cat-link">Exploration</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../standard-penetration-test/">Essai SPT (Standard Penetration Test)</a></div></div><div class="nav-item has-dd"><a href="../essais-in-situ/" class="nav-cat-link">Essais in situ</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../au-dilatometre-plat/">Essai au dilatomètre plat (DMT)</a></div></div><div class="nav-item has-dd"><a href="../laboratoire/" class="nav-cat-link">Laboratoire</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../compression-simple/">Essai de compression simple (UCS)</a><a href="../consolidation-œdometrique/">Essai de consolidation œdométrique</a><a href="../cbr-laboratoire/">Essai CBR en laboratoire</a><a href="../triaxial/">Essai triaxial</a><a href="../etude-mecanique-sols/">Étude de mécanique des sols</a></div></div><div class="nav-item has-dd"><a href="../geophysique/" class="nav-cat-link">Géophysique</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../tomographie-sismique/">Tomographie sismique (réfraction/réflexion)</a></div></div><div class="nav-item has-dd"><a href="../fondations/" class="nav-cat-link">Fondations</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-tassement-differentiel/">Analyse de tassement différentiel</a><a href="../fondations-remblais/">Fondations sur remblais (analyse)</a><a href="../conception-fondations-parasismiques/">Conception de fondations parasismiques</a><a href="../analyse-pieux-frottement-lateral/">Analyse pieux: frottement latéral vs. pointe</a></div></div><div class="nav-item has-dd"><a href="../pentes-et-murs/" class="nav-cat-link">Pentes et murs</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-lerosion-sols/">Analyse de l'érosion des sols</a><a href="../analyse-stabilite-pentes/">Analyse de stabilité des pentes</a><a href="../conception-stabilisation-pentes/">Conception de stabilisation des pentes</a><a href="../conception-murs-soutenement/">Conception de murs de soutènement</a></div></div><div class="nav-item has-dd"><a href="../amelioration/" class="nav-cat-link">Amélioration</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../conception-colonnes-ballastees/">Conception de colonnes ballastées (stone columns)</a><a href="../conception-compactage-dynamique/">Conception de compactage dynamique</a><a href="../conception-drains-verticaux-prefabriques/">Conception de drains verticaux préfabriqués</a><a href="../conception-jet-grouting/">Conception de jet grouting</a><a href="../conception-prechargement-surcharge/">Conception de préchargement avec surcharge</a><a href="../instrumentation-geotechnique/">Instrumentation géotechnique (conception et installation)</a><a href="../remediation-sols-contamines/">Remédiation des sols contaminés</a></div></div><div class="nav-item has-dd"><a href="../excavations-souterraines/" class="nav-cat-link">Excavations</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-geotechnique-tunnels-sols/">Analyse géotechnique pour tunnels en sols mous</a></div></div><div class="nav-item has-dd"><a href="../geotechnique-routiere/" class="nav-cat-link">Routier</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../conception-plate-forme-routiere/">Conception de plate-forme routière</a><a href="../conception-remblais-routiers/">Conception de remblais routiers</a><a href="../drainage-routier-geotechnique/">Drainage routier géotechnique</a><a href="../etude-cbr-conception-routiere/">Étude CBR pour conception routière</a></div></div><div class="nav-item has-dd"><a href="../sismique/" class="nav-cat-link">Sismique</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-damplification-sismique/">Analyse d'amplification sismique</a></div></div>
+        </div>
 </nav>
 
 <header class="hero"><div class="hero-inner">
@@ -128,7 +401,7 @@ img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet
           <figcaption style="padding:.5rem .8rem;font-size:.78rem;color:#64748B;background:#FAFAF7">Image technique de référence — Lyon</figcaption>
         </figure>
       </div>
-    </section><section class="section"><h2>Considérations locales</h2><p>Entre le quartier de la Guillotière, où les alluvions anciennes sont bien compactes, et le plateau de la Duchère, où les argiles glaciaires peuvent présenter un retrait-gonflement marqué, les conditions de fondation changent du tout au tout. Le risque principal à Lyon reste le retrait-gonflement des argiles : en période de sécheresse, les maisons individuelles mal fondées subissent des désordres de fissuration. L’étude de mécanique des sols doit donc évaluer l’indice de plasticité (Ip) et le potentiel de gonflement. Dans les zones de remblais de la confluence Saône-Rhône, nous mesurons aussi la sensibilité à la liquéfaction des sables lâches sous sollicitation sismique (zone de sismicité faible à modérée). L’étude de mécanique des sols intègre ces aléas pour dimensionner des fondations adaptées.</p></section>
+    </section><section class="section"><h2>Considérations locales</h2><p>Entre le quartier de la Guillotière, où les alluvions anciennes sont bien compactes, et le plateau de la Duchère, où les argiles glaciaires peuvent présenter un retrait-gonflement marqué, les conditions de fondation changent du tout au tout. Le risque principal à Lyon reste le retrait-gonflement des argiles : en période de sécheresse, les maisons individuelles mal fondées subissent des désordres de fissuration. L’étude de mécanique des sols doit donc évaluer l’indice de plasticité (Ip) et le potentiel de gonflement. Dans les zones de remblais de la confluence Saône-Rhône, nous mesurons aussi la sensibilité à la liquéfaction des sables lâches sous sollicitation sismique (zone de sismicité faible à modérée). L’étude de mécanique des sols intègre ces aléas pour dimensionner des <a href="/fondations/">fondations</a> adaptées.</p></section>
 
 
     <section class="block mid-cta-d8b6-d8b6" style="padding:2rem 0">
@@ -141,7 +414,9 @@ img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet
 
 
 
-<section class="section"><h2>Paramètres techniques</h2><div style="max-width:700px;margin:1.5rem auto;border-left:4px solid #EAB308;border-radius:6px;overflow:hidden;background:#FFF;box-shadow:0 1px 3px rgba(0,0,0,.05)"><table style="width:100%;border-collapse:collapse;font-size:.92rem"><thead><tr style="background:#EAB308;color:#FFF"><th style="padding:.75rem 1rem;text-align:left;font-weight:600">Paramètre</th><th style="padding:.75rem 1rem;text-align:left;font-weight:600">Valeur typique</th></tr></thead><tbody><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Résistance au cisaillement (c', φ')</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">5–40 kPa, 25–38°</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Module de déformabilité (E')</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">10–80 MPa selon la lithologie</td></tr><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Coefficient de Poisson ν</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">0,25–0,40 (argiles) ; 0,20–0,30 (sables)</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Poids volumique humide γ_h</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">17–22 kN/m³</td></tr><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Tassement œdométrique C_c (argiles lyonnaises)</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">0,12–0,35</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Perméabilité k (alluvions)</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">10⁻⁴–10⁻⁶ m/s</td></tr></tbody></table></div></section>
+<section class="section"><h2>Paramètres techniques</h2>
+<hr style="border:none;height:2px;background:linear-gradient(90deg,transparent,#A16207,transparent);margin:2rem 0;width:60%;margin-left:auto;margin-right:auto">
+<div style="max-width:700px;margin:1.5rem auto;border-left:4px solid #EAB308;border-radius:6px;overflow:hidden;background:#FFF;box-shadow:0 1px 3px rgba(0,0,0,.05)"><table style="width:100%;border-collapse:collapse;font-size:.92rem"><thead><tr style="background:#EAB308;color:#FFF"><th style="padding:.75rem 1rem;text-align:left;font-weight:600">Paramètre</th><th style="padding:.75rem 1rem;text-align:left;font-weight:600">Valeur typique</th></tr></thead><tbody><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Résistance au cisaillement (c', φ')</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">5–40 kPa, 25–38°</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Module de déformabilité (E')</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">10–80 MPa selon la lithologie</td></tr><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Coefficient de Poisson ν</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">0,25–0,40 (argiles) ; 0,20–0,30 (sables)</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Poids volumique humide γ_h</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">17–22 kN/m³</td></tr><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Tassement œdométrique C_c (argiles lyonnaises)</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">0,12–0,35</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Perméabilité k (alluvions)</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">10⁻⁴–10⁻⁶ m/s</td></tr></tbody></table></div></section>
 
 
     <section class="block sub-services-block" style="padding:3.5rem 1.5rem">
@@ -161,7 +436,9 @@ img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet
       </div>
     </section>
 
-<section class="section"><h2>Normes applicables</h2><p>NF P94-261 (fondations superficielles), NF P94-262 (fondations profondes), Eurocode 7 – EN 1997-1:2004, NF P94-410 (essais de laboratoire – géotechnique)</p></section>
+<section class="section"><h2>Normes applicables</h2>
+<hr style="border:none;height:2px;background:linear-gradient(90deg,transparent,#A16207,transparent);margin:2rem 0;width:60%;margin-left:auto;margin-right:auto">
+<p>NF P94-261 (fondations superficielles), NF P94-262 (fondations profondes), Eurocode 7 – EN 1997-1:2004, NF P94-410 (essais de laboratoire – géotechnique)</p></section>
 
 <section class="section"><h2>Consultations fréquentes</h2><details><summary>Combien coûte une étude de mécanique des sols à Lyon ?</summary><p>Le coût d'une étude de mécanique des sols pour une maison individuelle ou un petit collectif à Lyon se situe généralement entre 2 510 € et 4 270 €, selon le nombre de sondages, la profondeur et la complexité des essais en laboratoire. Pour un projet plus vaste (bâtiment R+4 ou plus), le budget peut dépasser 6 000 €. Nous établissons un devis détaillé après visite du site.</p></details><details><summary>Quelle est la différence entre une étude de sol G1 et G2 ?</summary><p>La mission G1 (étude préalable) fournit une première caractérisation du site : nature des terrains, présence d'eau, risques majeurs. Elle est souvent sommaire et sert à orienter le projet. La mission G2 (étude de projet) est beaucoup plus détaillée : elle comprend des sondages, des essais en laboratoire, des calculs de capacité portante et de tassement, et aboutit à des préconisations de fondations dimensionnées. À Lyon, la G2 est obligatoire pour tout permis de construire depuis l'arrêté du 22 octobre 2018.</p></details><details><summary>Quand faut-il réaliser une étude de mécanique des sols à Lyon ?</summary><p>Idéalement, l'étude de mécanique des sols doit être lancée dès la phase d'avant-projet (AVP), avant le dépôt du permis de construire. Elle est indispensable pour toute construction neuve, extension, sous-sol ou piscine enterrée, surtout dans les secteurs argileux de la Duchère ou de la Croix-Rousse. En cas de rénovation lourde (ajout d'étage, changement de charge), elle permet de vérifier que les fondations existantes sont adaptées.</p></details></section>
 
@@ -173,6 +450,7 @@ img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet
 
 
 <script>
+
 (function(){
   function init(){
     if(typeof L==='undefined'){setTimeout(init,200);return;}
@@ -180,15 +458,18 @@ img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet
     if(!el)return;
     var map=L.map(el).setView([45.7578137,4.8320114],12);
     L.tileLayer('https://{s}.tile-d8b6.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:18}).addTo(map);
-    L.marker([45.7578137,4.8320114]).addTo(map).bindPopup("Lyon").openPopup();
+    L.marker([45.7578137,4.8320114],{icon:L.divIcon({html:'<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 36\" width=\"24\" height=\"36\"><path d=\"M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24c0-6.6-5.4-12-12-12z\" fill=\"#E11D48\" stroke=\"#FFF\" stroke-width=\"1.5\"/><circle cx=\"12\" cy=\"12\" r=\"4\" fill=\"#FFF\"/></svg>',className:'',iconSize:[24,36],iconAnchor:[12,36],popupAnchor:[0,-32]})}).addTo(map).bindPopup("Lyon").openPopup();
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
 </script>
 
-    <section class="block map-block" style="padding:3rem 1.5rem">
+    <section class="block video-block" style="padding:2rem 1.5rem"><div style="max-width:720px;margin:0 auto"><h2 style="margin-bottom:1rem;font-weight:700;font-size:1.4rem">Vidéo explicative</h2><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px"><iframe src="https://www.youtube.com/embed/x8bmPJ_fMYo" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" loading="lazy" allowfullscreen></iframe></div></div></section>
+<section class="block map-block" style="padding:3rem 1.5rem">
       <div style="max-width:1200px;margin:0 auto">
         <h2 style="margin-bottom:.8rem;font-weight:700">Emplacement et zone de service</h2>
+<hr style="border:none;height:2px;background:linear-gradient(90deg,transparent,#A16207,transparent);margin:2rem 0;width:60%;margin-left:auto;margin-right:auto">
+
         <p style="margin-bottom:1rem;color:#555">Nous intervenons sur Lyon.</p>
         <div class="map-wrap" style="position:relative;max-width:520px;margin:0 auto;aspect-ratio:4/3;border-radius:8px;overflow:hidden;border:1px solid #E5E7EB">
           <div id="map_d8b6dd_59f1" style="position:absolute;top:0;left:0;width:100%;height:100%"></div>
@@ -200,14 +481,14 @@ img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet
           L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png",{
             attribution:"&copy; OpenStreetMap contributors &copy; CARTO",maxZoom:19,subdomains:"abcd"
           }).addTo(m);
-          L.marker([45.7578137,4.8320114]).addTo(m).bindPopup("Lyon");
+          L.marker([45.7578137,4.8320114],{icon:L.divIcon({html:'<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 36\" width=\"24\" height=\"36\"><path d=\"M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24c0-6.6-5.4-12-12-12z\" fill=\"#E11D48\" stroke=\"#FFF\" stroke-width=\"1.5\"/><circle cx=\"12\" cy=\"12\" r=\"4\" fill=\"#FFF\"/></svg>',className:'',iconSize:[24,36],iconAnchor:[12,36],popupAnchor:[0,-32]})}).addTo(m).bindPopup("Lyon");
         })();
         </script>
         <div style="margin-top:.5rem;font-size:.78rem;color:#888;text-align:center">
           <a href="https://www.openstreetmap.org/?mlat=45.7578137&mlon=4.8320114#map=11/45.7578137/4.8320114" target="_blank" rel="noopener">Emplacement et zone de service</a>
         </div>
       </div>
-    </section><section class="block video-block" style="padding:2rem 1.5rem"><div style="max-width:720px;margin:0 auto"><h2 style="margin-bottom:1rem;font-weight:700;font-size:1.4rem">Vidéo explicative</h2><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px"><iframe src="https://www.youtube.com/embed/x8bmPJ_fMYo" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" loading="lazy" allowfullscreen></iframe></div></div></section><footer style="background:linear-gradient(135deg,#0C1B33,#EAB30822);color:#FFF;padding:3rem 1.5rem"><div style="max-width:720px;margin:0 auto;text-align:center"><h3 style="font-size:1.4rem;margin:0 0 .5rem;color:#FFF">Prêt pour votre projet ?</h3><p style="margin:0 0 1.5rem;color:rgba(255,255,255,.8)">Lyon, France</p><a href="mailto:contact@geotechnique.sbs" style="display:inline-block;background:#EAB308;color:#FFF !important;padding:.9rem 2.2rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:1rem;box-shadow:0 4px 14px rgba(0,0,0,.25)">Demander un devis — contact@geotechnique.sbs</a><p style="margin:1.8rem 0 0;font-size:.82rem;color:rgba(255,255,255,.5)">© 2026 Geotechnique · Tous droits réservés</p></div><div data-updated="2026-04-11" style="font-size:.78rem;color:rgba(255,255,255,.6);margin-top:.8rem">Dernière mise à jour: 2026-04-12</div><div data-authority-refs class="authority-refs" style="text-align:center;font-size:.8rem;padding:.5rem 0;opacity:.6"><strong>Références:</strong> <a href="https://www.afnor.org/" rel="nofollow noopener" target="_blank">Normes AFNOR</a> · <a href="https://eurocodes.jrc.ec.europa.eu/showpage.php?id=132" rel="nofollow noopener" target="_blank">Eurocode 7</a> · <a href="https://www.iso.org/committee/49802.html" rel="nofollow noopener" target="_blank">ISO Géotechnique</a></div></footer>
+    </section><footer style="background:linear-gradient(135deg,#0C1B33,#EAB30822);color:#FFF;padding:3rem 1.5rem"><div style="max-width:720px;margin:0 auto;text-align:center"><h3 style="font-size:1.4rem;margin:0 0 .5rem;color:#FFF">Prêt pour votre projet ?</h3><p style="margin:0 0 1.5rem;color:rgba(255,255,255,.8)">Lyon, France</p><a href="mailto:contact@geotechnique.sbs" style="display:inline-block;background:#EAB308;color:#FFF !important;padding:.9rem 2.2rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:1rem;box-shadow:0 4px 14px rgba(0,0,0,.25)">Demander un devis — contact@geotechnique.sbs</a><p style="margin:1.8rem 0 0;font-size:.82rem;color:rgba(255,255,255,.5)">© 2026 Geotechnique · Tous droits réservés</p></div><div data-updated="2026-04-11" style="font-size:.78rem;color:rgba(255,255,255,.6);margin-top:.8rem">Dernière mise à jour: 2026-04-12</div><div data-authority-refs class="authority-refs" style="text-align:center;font-size:.8rem;padding:.5rem 0;opacity:.6"><strong>Références:</strong> <a href="https://www.afnor.org/" rel="nofollow noopener" target="_blank">Normes AFNOR</a> · <a href="https://eurocodes.jrc.ec.europa.eu/showpage.php?id=132" rel="nofollow noopener" target="_blank">Eurocode 7</a> · <a href="https://www.iso.org/committee/49802.html" rel="nofollow noopener" target="_blank">ISO Géotechnique</a></div></footer>
 
 <script>(function(){
 // Dropdown click toggle

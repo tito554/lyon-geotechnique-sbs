@@ -97,16 +97,289 @@ details{background:#FFF;border:1px solid #E5E7EB;border-radius:6px;padding:.9rem
   body{background:#FAFAFA!important;color:#18181B!important}
   .navbar .nav{display:flex!important;flex-wrap:nowrap!important;gap:1.2rem!important;align-items:center!important;overflow:visible!important;justify-content:space-between!important}
   main{flex:1!important;min-width:0!important}
-img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet" href="/css/leaflet-d8b6.css"><script src="/js/leaflet-d8b6.js"></script></head><body>
+img{max-width:100%!important;height:auto!important}
+}
+</style><link rel="stylesheet" href="/css/leaflet-d8b6.css"><script src="/js/leaflet-d8b6.js"></script><style id="minimal-fix-v5">
+/* Sticky para navbar específicos (NO header.hero) */
+.topbar, .navbar, .header-top, .main-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1010 !important;
+}
+header.hero, .hero { position: relative !important; }
+/* Dropdowns por encima del hero */
+.dd, .has-dd .dd, .nav-item .dd {
+  z-index: 1100 !important;
+}
+/* Leaflet contained */
+.leaflet-pane { z-index: 400 !important; }
+.leaflet-control { z-index: 800 !important; }
+.leaflet-container { z-index: 1 !important; }
+</style>
+<style id="inline-link-style">
+p a[href^="/"]:not(.cta-btn):not(.hero-cta){color:var(--accent,#2F4F4F) !important;text-decoration:underline !important;text-decoration-color:rgba(29,78,216,.45);text-underline-offset:2px;font-weight:600}
+p a[href^="/"]:not(.cta-btn):not(.hero-cta):hover{text-decoration-color:currentColor;opacity:.85}
+</style>
+<style id="navbar-compact-fix">
+/* Compactar navbar para que el menú entre completo */
+.navbar{padding:.65rem 1rem !important}
+.navbar .nav{gap:.55rem !important}
+.nav-item{font-size:.74rem !important;letter-spacing:.01em !important}
+.nav-item.has-dd .nav-cat-link{padding:.4rem .25rem !important}
+.nav-item.has-dd .nav-arrow{font-size:.7rem !important;margin-left:.15rem !important}
+.cta-btn{padding:.45rem .8rem !important;font-size:.72rem !important;letter-spacing:.03em !important}
+.logo-box,.brand-name,.brand{font-size:.82rem !important}
+.logo-text .main{font-size:.95rem !important}
+.logo-text .sub{font-size:.72rem !important}
+/* Para layouts aberdeen/classic con clase distinta */
+header nav a,.menu a{font-size:.78rem !important}
+@media (max-width:1100px){
+  .nav-item{font-size:.7rem !important}
+  .navbar .nav{gap:.4rem !important}
+  .cta-btn{padding:.4rem .65rem !important;font-size:.68rem !important}
+}
+</style>
+<style id="layout-defensive">
+body{overflow-x:clip;max-width:100vw}
+body>*{max-width:100vw}
+@media (min-width:901px){
+  aside{position:relative}
+  aside+main,aside~main,aside~div>main{margin-left:0}
+  .content-area{display:flex;gap:1rem}
+}
+@media (max-width:900px){
+  aside{width:100% !important;position:static !important;height:auto !important}
+  .navbar{flex-wrap:wrap}
+}
+</style>
+<style id="navbar-fixed-override">
+nav.navbar,.header-top,.main-header{position:fixed !important;top:0 !important;left:0 !important;right:0 !important;z-index:1010 !important}
+body{padding-top:60px}
+.hero,.hero-inner,header.hero{padding-top:1rem !important}
+@media (max-width:900px){body{padding-top:90px}}
+</style>
+<style id="sidebar-hover-fix-v2">
+/* Adaptativo: hover preserva color heredado (white en dark sidebar, dark en light) */
+aside .cat-name:hover,aside .sb-home:hover,aside .cat-sub-wrap a:hover,
+aside nav a:hover{color:inherit !important;text-decoration:underline !important;text-underline-offset:3px}
+aside .cat-name,aside .sb-home,aside nav a{color:inherit}
+/* Bg sutil que funciona en cualquier fondo */
+aside .cat-name:hover,aside .sb-home:hover{background:rgba(127,127,127,.12) !important}
+aside .cat-sub-wrap a:hover{background:rgba(127,127,127,.08) !important}
+</style>
+<style id="cat-toggle-no-box">
+.cat-toggle{width:auto !important;min-width:32px;border:none !important;border-left:none !important;background:transparent !important;box-shadow:none !important;padding:.3rem .5rem !important}
+.cat-toggle:hover{background:rgba(127,127,127,.12) !important}
+.cat-arrow{display:inline-block}
+</style>
+<style id="nav-arrow-no-box">
+.nav-arrow,.nav-arrow:hover,.nav-arrow:focus{background:transparent !important;border:none !important;outline:none !important;padding:0 .15rem !important;color:inherit !important;cursor:pointer !important;box-shadow:none !important}
+</style>
+<style id="post-fixes-v2">
+/* Inline links visibles en prosa */
+p a[href^="/"]:not(.cta-btn):not(.hero-cta):not(.nav-contact-btn){color:var(--accent,#1d4ed8) !important;text-decoration:underline !important;text-decoration-color:rgba(29,78,216,.45);text-underline-offset:2px;font-weight:600}
+p a[href^="/"]:not(.cta-btn):not(.hero-cta):not(.nav-contact-btn):hover{text-decoration-color:currentColor;opacity:.85}
+/* Sidebar hover adaptive */
+aside .cat-name:hover,aside .sb-home:hover,aside .cat-sub-wrap a:hover,
+aside nav a:hover{color:inherit !important;text-decoration:underline !important;text-underline-offset:3px}
+aside .cat-name,aside .sb-home,aside nav a{color:inherit}
+aside .cat-name:hover,aside .sb-home:hover{background:rgba(127,127,127,.12) !important}
+/* Cat-toggle sin caja */
+.cat-toggle{width:auto !important;min-width:32px;border:none !important;border-left:none !important;background:transparent !important;box-shadow:none !important;padding:.3rem .5rem !important}
+.cat-toggle:hover{background:rgba(127,127,127,.12) !important}
+/* Nav-arrow sin caja */
+.nav-arrow,.nav-arrow:hover,.nav-arrow:focus{background:transparent !important;border:none !important;outline:none !important;padding:0 .15rem !important;color:inherit !important;cursor:pointer !important;box-shadow:none !important}
+/* Navbar compacto */
+.navbar{padding:.65rem 1rem !important}
+.navbar .nav{gap:.55rem !important}
+.nav-item{font-size:.74rem !important;letter-spacing:.01em !important}
+.logo-box,.brand-name,.brand{font-size:.82rem !important}
+/* Layout defensive */
+body{overflow-x:clip;max-width:100vw}
+body>*{max-width:100vw}
+</style>
+<style id="srf-header-fix-v1">
+/* === FIX: header SRF truncado (todos los subs srf) — 2026-05-17 ===
+   Diagnóstico: 9 nav-items empujan logo fuera del viewport (body overflow-x:clip corta izq).
+   navbar-fixed-override dejó body{padding-top:60px} huérfano + sidebar-overflow-fix aplicó
+   color:#FFF en nav links (blanco sobre blanco). kill-sticky hizo position:static → OK pero
+   body padding quedó. Fix integral abajo. */
+
+/* 1. Eliminar padding-top huérfano (de navbar-fixed-override) */
+body { padding-top: 0 !important; }
+
+/* 2. Navbar sticky limpio — fondo blanco, z-index alto, sin desborde */
+nav.navbar {
+  position: sticky !important;
+  top: 0 !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  z-index: 1010 !important;
+  overflow: visible !important;
+  background: #FFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: .65rem 1rem !important;
+  gap: .5rem !important;
+}
+
+/* 3. Logo-area: NO squeezear, ancho mínimo garantizado */
+nav.navbar .logo-area {
+  flex-shrink: 0 !important;
+  min-width: 120px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: .6rem !important;
+  overflow: visible !important;
+}
+
+/* 4. Logo-box: visible, color correcto (blanco sobre negro) */
+nav.navbar .logo-box {
+  background: #141414 !important;
+  color: #FFF !important;
+  padding: .35rem .65rem !important;
+  font-size: .85rem !important;
+  font-weight: 900 !important;
+  flex-shrink: 0 !important;
+}
+
+/* 5. Logo-text: color oscuro sobre fondo blanco navbar */
+nav.navbar .logo-text {
+  color: #141414 !important;
+  font-size: .78rem !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  white-space: nowrap !important;
+}
+
+/* 6. Nav items: texto OSCURO (navbar bg es blanco) — anula sidebar-overflow-fix color:#FFF */
+nav.navbar .nav-item,
+nav.navbar .nav-item a,
+nav.navbar .nav-cat-link,
+nav.navbar .nav-item span:not(.dd span) {
+  color: #141414 !important;
+  font-size: .72rem !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+nav.navbar .nav-item a:hover,
+nav.navbar .nav-cat-link:hover {
+  color: #B08D4A !important;
+  text-decoration: none !important;
+}
+
+/* 7. Nav contenedor: flex-wrap para que los items no revienten el ancho */
+nav.navbar .nav {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: .3rem .5rem !important;
+  align-items: center !important;
+  overflow: visible !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  justify-content: flex-end !important;
+}
+
+/* 8. CTA button en navbar (si existe) */
+nav.navbar .cta-btn {
+  color: #141414 !important;
+  background: #B08D4A !important;
+  font-size: .7rem !important;
+  padding: .4rem .75rem !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+/* 9. Dropdown z-index sobre hero */
+nav.navbar .dd {
+  z-index: 1100 !important;
+  color: #141414 !important;
+}
+nav.navbar .dd a {
+  color: #141414 !important;
+  font-size: .82rem !important;
+}
+
+/* 10. Hero posición correcta (NO empujado por padding-top fantasma) */
+header.hero, .hero {
+  position: relative !important;
+  margin-top: 0 !important;
+  padding-top: 3rem !important;
+}
+</style>
+<style id="collapse-final-v6">
+/* === SIDEBAR collapse: respetar JS, no forzar display:block === */
+.cat-sub, .cat-sub-wrap, .nav-cat-sub {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  flex: none !important;
+  position: static !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+/* Sub-items legibles */
+.cat-sub a, .cat-sub-wrap a, .nav-cat-sub a {
+  display: block !important;
+  width: 100% !important;
+  font-size: .82rem !important;
+  line-height: 1.25 !important;
+  padding: .35rem .75rem .35rem 1.5rem !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  box-sizing: border-box !important;
+}
+
+/* === CARLSON: navbar horizontal arrows centrados === */
+.topbar .nav-item, .topnav .nav-item, nav.topbar > a, nav.topnav > a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: .25rem !important;
+  position: relative !important;
+}
+.topbar .nav-arrow, .topbar .cat-arrow, .topnav .nav-arrow, .topnav .cat-arrow,
+.nav-item > .arrow, .nav-item > svg, .nav-item > .triangle {
+  display: inline-flex !important;
+  align-items: center !important;
+  vertical-align: middle !important;
+  margin: 0 0 0 .15rem !important;
+  font-size: .7em !important;
+  line-height: 1 !important;
+  position: static !important;
+  transform: none !important;
+  top: auto !important;
+}
+
+/* === Cat-item flex correcto (cat-name + toggle arrow lado a lado) === */
+.cat-row, .cat-item > a:first-child, details > summary {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+.cat-name {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+.cat-toggle, .cat-arrow {
+  flex-shrink: 0 !important;
+}
+</style>
+</head><body>
 
 <nav class="navbar">
     <div class="logo-area" data-logo-link="1" onclick="window.location.href=\'../\'" style="cursor:pointer;margin-right:2.5rem;flex-shrink:0">
         <div class="logo-box">GE</div>
         <div class="logo-text">Geotechnique</div></a></div>
     <div class="nav">
-        <div class="nav-item has-dd"><a href="../exploration/" class="nav-cat-link">Exploration</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Fouille d'essai (Puits d'exploration)</a><a href="/">Essai CPT (Cone Penetration Test)</a><a href="../standard-penetration-test/">Essai SPT (Standard Penetration Test)</a></div></div><div class="nav-item has-dd"><a href="../essais-in-situ/" class="nav-cat-link">Essais in situ</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Essai de densité sur site (méthode du cône de sable)</a><a href="/">Essai d'infiltration (Porchet/Double anneau)</a><a href="../au-dilatometre-plat/">Essai au dilatomètre plat (DMT)</a><a href="/">Essai de plaque de charge (PLT)</a><a href="/">Essai pressiométrique Ménard</a><a href="/">Échantillonnage non remanié (tube Shelby)</a><a href="/">Essai de perméabilité sur site (Lefranc/Lugeon)</a><a href="/">Essai de cisaillement au scissomètre de chantier (Vane Shear Test)</a></div></div><div class="nav-item has-dd"><a href="../laboratoire/" class="nav-cat-link">Laboratoire</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Analyse granulométrique (tamisage + hydromètre)</a><a href="/">Caractérisation des sols résiduels</a><a href="/">Classification des sols (USCS/AASHTO)</a><a href="../compression-simple/">Essai de compression simple (UCS)</a><a href="../consolidation-œdometrique/">Essai de consolidation œdométrique</a><a href="/">Essai de cisaillement direct</a><a href="../cbr-laboratoire/">Essai CBR en laboratoire</a><a href="/">Essai Proctor (Normal ou Modifié)</a><a href="../triaxial/">Essai triaxial</a><a href="../etude-mecanique-sols/">Étude de mécanique des sols</a><a href="/">Limites d'Atterberg</a><a href="/">Essai de perméabilité en laboratoire (charge variable/constante)</a></div></div><div class="nav-item has-dd"><a href="../geophysique/" class="nav-cat-link">Géophysique</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Géoradar GPR (Ground Penetrating Radar)</a><a href="/">MASW / VS30 (vitesse des ondes de cisaillement)</a><a href="/">Microtremblements HVSR (Méthode Nakamura)</a><a href="/">Résistivité électrique / SEV (Sondage Électrique Vertical)</a><a href="../tomographie-sismique/">Tomographie sismique (réfraction/réflexion)</a></div></div><div class="nav-item has-dd"><a href="../fondations/" class="nav-cat-link">Fondations</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-tassement-differentiel/">Analyse de tassement différentiel</a><a href="/">Analyse de tassements</a><a href="/">Analyse de capacité portante</a><a href="../fondations-remblais/">Fondations sur remblais (analyse)</a><a href="/">Conception de fondations superficielles</a><a href="../conception-fondations-parasismiques/">Conception de fondations parasismiques</a><a href="/">Conception de fondations sur pieux</a><a href="/">Conception de radier général</a><a href="/">Conception de micropieux</a><a href="/">Conception de pieux battus</a><a href="/">Évaluation des sols affaissables</a><a href="/">Évaluation des sols gonflants</a><a href="../analyse-pieux-frottement-lateral/">Analyse pieux: frottement latéral vs. pointe</a></div></div><div class="nav-item has-dd"><a href="../pentes-et-murs/" class="nav-cat-link">Pentes et murs</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-lerosion-sols/">Analyse de l'érosion des sols</a><a href="../analyse-stabilite-pentes/">Analyse de stabilité des pentes</a><a href="/">Analyse de rupture de pente</a><a href="/">Analyse des coulées de débris</a><a href="/">Calcul du coefficient de sécurité (FS)</a><a href="/">Conception avec géocellules</a><a href="/">Conception d'ancrages actifs/passifs</a><a href="../conception-stabilisation-pentes/">Conception de stabilisation des pentes</a><a href="../conception-murs-soutenement/">Conception de murs de soutènement</a><a href="/">Conception de murs en Terre Armée Mécaniquement (MSE)</a><a href="/">Conception de parois moulées</a><a href="/">Conception de rideaux de palplanches</a><a href="/">Évaluation des glissements de terrain</a><a href="/">Surveillance géotechnique des pentes (mensuelle)</a></div></div><div class="nav-item has-dd"><a href="../amelioration/" class="nav-cat-link">Amélioration</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Analyse des sols non saturés</a><a href="../conception-colonnes-ballastees/">Conception de colonnes ballastées (stone columns)</a><a href="../conception-compactage-dynamique/">Conception de compactage dynamique</a><a href="/">Conception de Deep Soil Mixing (DSM)</a><a href="/">Conception de drainage géotechnique</a><a href="../conception-drains-verticaux-prefabriques/">Conception de drains verticaux préfabriqués</a><a href="/">Conception d'injections (grouting)</a><a href="../conception-jet-grouting/">Conception de jet grouting</a><a href="/">Conception de préchargement (sans surcharge)</a><a href="../conception-prechargement-surcharge/">Conception de préchargement avec surcharge</a><a href="/">Conception de vibrocompactage</a><a href="/">Spécification des géogrilles</a><a href="/">Spécification des géomembranes</a><a href="/">Spécification des géotextiles</a><a href="/">Stabilisation à la chaux et au ciment</a><a href="/">Géotechnique des centres d'enfouissement</a><a href="../instrumentation-geotechnique/">Instrumentation géotechnique (conception et installation)</a><a href="/">Gestion des sols organiques</a><a href="../remediation-sols-contamines/">Remédiation des sols contaminés</a></div></div><div class="nav-item has-dd"><a href="../excavations-souterraines/" class="nav-cat-link">Excavations souterraines</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-geotechnique-tunnels-sols/">Analyse géotechnique pour tunnels en sols mous</a><a href="/">Conception géotechnique des excavations profondes</a><a href="/">Surveillance géotechnique des excavations</a></div></div><div class="nav-item has-dd"><a href="../geotechnique-routiere/" class="nav-cat-link">Géotechnique routière</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Conception de chaussées souples</a><a href="/">Conception de chaussées rigides</a><a href="../conception-plate-forme-routiere/">Conception de plate-forme routière</a><a href="../conception-remblais-routiers/">Conception de remblais routiers</a><a href="../drainage-routier-geotechnique/">Drainage routier géotechnique</a><a href="/">Stabilisation des sols pour routes</a><a href="../etude-cbr-conception-routiere/">Étude CBR pour conception routière</a><a href="/">Évaluation des chaussées existantes</a><a href="/">Géotechnique routière (conception chaussée/plate-forme)</a></div></div><div class="nav-item has-dd"><a href="../sismique/" class="nav-cat-link">Sismique</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-damplification-sismique/">Analyse d'amplification sismique</a><a href="/">Analyse de liquéfaction des sols</a><a href="/">Analyse de réponse de site</a><a href="/">Conception d'isolation sismique à la base</a><a href="/">Microzonage sismique</a></div></div>
-        <a class="home-btn" href="../" style="background:transparent;border:1px solid currentColor;color:inherit;padding:.5rem .9rem;font-size:.82rem;font-weight:700;text-transform:uppercase;text-decoration:none;border-radius:4px;margin-right:.5rem">ACCUEIL</a><button class="cta-btn" data-email="contact@geotechnique.sbs" type="button">GET IN TOUCH</button>
-    </div>
+        <div class="nav-item has-dd"><a href="../exploration/" class="nav-cat-link">Exploration</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Fouille d'essai (Puits d'exploration)</a><a href="/">Essai CPT (Cone Penetration Test)</a><a href="../standard-penetration-test/">Essai SPT (Standard Penetration Test)</a></div></div><div class="nav-item has-dd"><a href="../essais-in-situ/" class="nav-cat-link">Essais in situ</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Essai de densité sur site (méthode du cône de sable)</a><a href="/">Essai d'infiltration (Porchet/Double anneau)</a><a href="../au-dilatometre-plat/">Essai au dilatomètre plat (DMT)</a><a href="/">Essai de plaque de charge (PLT)</a><a href="/">Essai pressiométrique Ménard</a><a href="/">Échantillonnage non remanié (tube Shelby)</a><a href="/">Essai de perméabilité sur site (Lefranc/Lugeon)</a><a href="/">Essai de cisaillement au scissomètre de chantier (Vane Shear Test)</a></div></div><div class="nav-item has-dd"><a href="../laboratoire/" class="nav-cat-link">Laboratoire</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Analyse granulométrique (tamisage + hydromètre)</a><a href="/">Caractérisation des sols résiduels</a><a href="/">Classification des sols (USCS/AASHTO)</a><a href="../compression-simple/">Essai de compression simple (UCS)</a><a href="../consolidation-œdometrique/">Essai de consolidation œdométrique</a><a href="/">Essai de cisaillement direct</a><a href="../cbr-laboratoire/">Essai CBR en laboratoire</a><a href="/">Essai Proctor (Normal ou Modifié)</a><a href="../triaxial/">Essai triaxial</a><a href="../etude-mecanique-sols/">Étude de mécanique des sols</a><a href="/">Limites d'Atterberg</a><a href="/">Essai de perméabilité en laboratoire (charge variable/constante)</a></div></div><div class="nav-item has-dd"><a href="../geophysique/" class="nav-cat-link">Géophysique</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Géoradar GPR (Ground Penetrating Radar)</a><a href="/">MASW / VS30 (vitesse des ondes de cisaillement)</a><a href="/">Microtremblements HVSR (Méthode Nakamura)</a><a href="/">Résistivité électrique / SEV (Sondage Électrique Vertical)</a><a href="../tomographie-sismique/">Tomographie sismique (réfraction/réflexion)</a></div></div><div class="nav-item has-dd"><a href="../fondations/" class="nav-cat-link">Fondations</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-tassement-differentiel/">Analyse de tassement différentiel</a><a href="/">Analyse de tassements</a><a href="/">Analyse de capacité portante</a><a href="../fondations-remblais/">Fondations sur remblais (analyse)</a><a href="/">Conception de fondations superficielles</a><a href="../conception-fondations-parasismiques/">Conception de fondations parasismiques</a><a href="/">Conception de fondations sur pieux</a><a href="/">Conception de radier général</a><a href="/">Conception de micropieux</a><a href="/">Conception de pieux battus</a><a href="/">Évaluation des sols affaissables</a><a href="/">Évaluation des sols gonflants</a><a href="../analyse-pieux-frottement-lateral/">Analyse pieux: frottement latéral vs. pointe</a></div></div><div class="nav-item has-dd"><a href="../pentes-et-murs/" class="nav-cat-link">Pentes et murs</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-lerosion-sols/">Analyse de l'érosion des sols</a><a href="../analyse-stabilite-pentes/">Analyse de stabilité des pentes</a><a href="/">Analyse de rupture de pente</a><a href="/">Analyse des coulées de débris</a><a href="/">Calcul du coefficient de sécurité (FS)</a><a href="/">Conception avec géocellules</a><a href="/">Conception d'ancrages actifs/passifs</a><a href="../conception-stabilisation-pentes/">Conception de stabilisation des pentes</a><a href="../conception-murs-soutenement/">Conception de murs de soutènement</a><a href="/">Conception de murs en Terre Armée Mécaniquement (MSE)</a><a href="/">Conception de parois moulées</a><a href="/">Conception de rideaux de palplanches</a><a href="/">Évaluation des glissements de terrain</a><a href="/">Surveillance géotechnique des pentes (mensuelle)</a></div></div><div class="nav-item has-dd"><a href="../amelioration/" class="nav-cat-link">Amélioration</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Analyse des sols non saturés</a><a href="../conception-colonnes-ballastees/">Conception de colonnes ballastées (stone columns)</a><a href="../conception-compactage-dynamique/">Conception de compactage dynamique</a><a href="/">Conception de Deep Soil Mixing (DSM)</a><a href="/">Conception de drainage géotechnique</a><a href="../conception-drains-verticaux-prefabriques/">Conception de drains verticaux préfabriqués</a><a href="/">Conception d'injections (grouting)</a><a href="../conception-jet-grouting/">Conception de jet grouting</a><a href="/">Conception de préchargement (sans surcharge)</a><a href="../conception-prechargement-surcharge/">Conception de préchargement avec surcharge</a><a href="/">Conception de vibrocompactage</a><a href="/">Spécification des géogrilles</a><a href="/">Spécification des géomembranes</a><a href="/">Spécification des géotextiles</a><a href="/">Stabilisation à la chaux et au ciment</a><a href="/">Géotechnique des centres d'enfouissement</a><a href="../instrumentation-geotechnique/">Instrumentation géotechnique (conception et installation)</a><a href="/">Gestion des sols organiques</a><a href="../remediation-sols-contamines/">Remédiation des sols contaminés</a></div></div><div class="nav-item has-dd"><a href="../excavations-souterraines/" class="nav-cat-link">Excavations</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-geotechnique-tunnels-sols/">Analyse géotechnique pour tunnels en sols mous</a><a href="/">Conception géotechnique des excavations profondes</a><a href="/">Surveillance géotechnique des excavations</a></div></div><div class="nav-item has-dd"><a href="../geotechnique-routiere/" class="nav-cat-link">Routier</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="/">Conception de chaussées souples</a><a href="/">Conception de chaussées rigides</a><a href="../conception-plate-forme-routiere/">Conception de plate-forme routière</a><a href="../conception-remblais-routiers/">Conception de remblais routiers</a><a href="../drainage-routier-geotechnique/">Drainage routier géotechnique</a><a href="/">Stabilisation des sols pour routes</a><a href="../etude-cbr-conception-routiere/">Étude CBR pour conception routière</a><a href="/">Évaluation des chaussées existantes</a><a href="/">Routier (conception chaussée/plate-forme)</a></div></div><div class="nav-item has-dd"><a href="../sismique/" class="nav-cat-link">Sismique</a><button class="nav-arrow" type="button">▾</button><div class="dd"><a href="../analyse-damplification-sismique/">Analyse d'amplification sismique</a><a href="/">Analyse de liquéfaction des sols</a><a href="/">Analyse de réponse de site</a><a href="/">Conception d'isolation sismique à la base</a><a href="/">Microzonage sismique</a></div></div>
+        </div>
 </nav>
 
 <header class="hero"><div class="hero-inner">
@@ -141,7 +414,9 @@ img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet
 
 
 
-<section class="section"><h2>Paramètres techniques</h2><div style="max-width:700px;margin:1.5rem auto;border-left:4px solid #EAB308;border-radius:6px;overflow:hidden;background:#FFF;box-shadow:0 1px 3px rgba(0,0,0,.05)"><table style="width:100%;border-collapse:collapse;font-size:.92rem"><thead><tr style="background:#EAB308;color:#FFF"><th style="padding:.75rem 1rem;text-align:left;font-weight:600">Paramètre</th><th style="padding:.75rem 1rem;text-align:left;font-weight:600">Valeur typique</th></tr></thead><tbody><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Profondeur d'investigation</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">Jusqu'à 15 m (nappe alluviale)</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Méthode de prélèvement</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">Carottier double-paroi / tarière creuse</td></tr><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Polluants ciblés</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">HCT, HAP, BTEX, COHV, métaux lourds</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Technique de traitement in situ</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">Oxydation chimique (persulfate/peroxyde)</td></tr><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Volume traité par campagne</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">500 à 3 000 m³</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Délai d'intervention</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">3 à 8 semaines selon complexité</td></tr></tbody></table></div></section>
+<section class="section"><h2>Paramètres techniques</h2>
+<hr style="border:none;height:2px;background:linear-gradient(90deg,transparent,#A16207,transparent);margin:2rem 0;width:60%;margin-left:auto;margin-right:auto">
+<div style="max-width:700px;margin:1.5rem auto;border-left:4px solid #EAB308;border-radius:6px;overflow:hidden;background:#FFF;box-shadow:0 1px 3px rgba(0,0,0,.05)"><table style="width:100%;border-collapse:collapse;font-size:.92rem"><thead><tr style="background:#EAB308;color:#FFF"><th style="padding:.75rem 1rem;text-align:left;font-weight:600">Paramètre</th><th style="padding:.75rem 1rem;text-align:left;font-weight:600">Valeur typique</th></tr></thead><tbody><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Profondeur d'investigation</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">Jusqu'à 15 m (nappe alluviale)</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Méthode de prélèvement</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">Carottier double-paroi / tarière creuse</td></tr><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Polluants ciblés</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">HCT, HAP, BTEX, COHV, métaux lourds</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Technique de traitement in situ</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">Oxydation chimique (persulfate/peroxyde)</td></tr><tr style="background:#FAFAF7"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Volume traité par campagne</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">500 à 3 000 m³</td></tr><tr style="background:#FFFFFF"><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE">Délai d'intervention</td><td style="padding:.7rem 1rem;border-bottom:1px solid #EEE;color:#222;font-weight:500">3 à 8 semaines selon complexité</td></tr></tbody></table></div></section>
 
 
     <section class="block sub-services-block" style="padding:3.5rem 1.5rem">
@@ -156,12 +431,14 @@ img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet
       <div style="max-width:1200px;margin:0 auto">
         <h2 style="margin-bottom:1.5rem;font-weight:700">Services techniques associés</h2>
         <div class="sub-svc-grid-d8b6-d8b6">
-          <div class="sub-svc"><div class="sub-svc-num" style="color:#EAB308;font-weight:700;font-size:.85rem;letter-spacing:.1em">01</div><h3 style="color:#0C1B33;font-size:1.1rem;margin:.3rem 0 .5rem">Diagnostic et caractérisation des pollutions</h3><p style="color:#333;line-height:1.65;font-size:.93rem">Campagnes de sondages, prélèvements d'échantillons, analyses en laboratoire accrédité COFRAC pour identifier les polluants (HCT, HAP, BTEX, COHV, métaux) et délimiter l'étendue du panache. Rapport d'interprétation incluant un modèle conceptuel du site.</p></div><div class="sub-svc"><div class="sub-svc-num" style="color:#EAB308;font-weight:700;font-size:.85rem;letter-spacing:.1em">02</div><h3 style="color:#0C1B33;font-size:1.1rem;margin:.3rem 0 .5rem">Traitement in situ et ex situ</h3><p style="color:#333;line-height:1.65;font-size:.93rem">Mise en œuvre de techniques adaptées : oxydation chimique, bioremédiation, venting/air sparging, excavation avec transport vers des centres de traitement agréés. Suivi analytique en continu pour garantir l'atteinte des objectifs de dépollution.</p></div>
+          <div class="sub-svc"><div class="sub-svc-num" style="color:#EAB308;font-weight:700;font-size:.85rem;letter-spacing:.1em">01</div><h3 style="color:#0C1B33;font-size:1.1rem;margin:.3rem 0 .5rem">Diagnostic et caractérisation des pollutions</h3><p style="color:#333;line-height:1.65;font-size:.93rem">Campagnes de sondages, prélèvements d'échantillons, analyses en <a href="/laboratoire/">laboratoire</a> accrédité COFRAC pour identifier les polluants (HCT, HAP, BTEX, COHV, métaux) et délimiter l'étendue du panache. Rapport d'interprétation incluant un modèle conceptuel du site.</p></div><div class="sub-svc"><div class="sub-svc-num" style="color:#EAB308;font-weight:700;font-size:.85rem;letter-spacing:.1em">02</div><h3 style="color:#0C1B33;font-size:1.1rem;margin:.3rem 0 .5rem">Traitement in situ et ex situ</h3><p style="color:#333;line-height:1.65;font-size:.93rem">Mise en œuvre de techniques adaptées : oxydation chimique, bioremédiation, venting/air sparging, excavation avec transport vers des centres de traitement agréés. Suivi analytique en continu pour garantir l'atteinte des objectifs de dépollution.</p></div>
         </div>
       </div>
     </section>
 
-<section class="section"><h2>Normes applicables</h2><p>NF X 31-100 (échantillonnage sols), NF EN ISO 5667 (échantillonnage eaux souterraines), Arrêté du 2 février 1998 (prélèvements et <a href="../fondations-remblais/" data-interlink="1">analyse</a>), Guide INERIS DRS-13-125225-06922A (méthodes de dépollution)</p></section>
+<section class="section"><h2>Normes applicables</h2>
+<hr style="border:none;height:2px;background:linear-gradient(90deg,transparent,#A16207,transparent);margin:2rem 0;width:60%;margin-left:auto;margin-right:auto">
+<p>NF X 31-100 (échantillonnage sols), NF EN ISO 5667 (échantillonnage eaux souterraines), Arrêté du 2 février 1998 (prélèvements et <a href="../fondations-remblais/" data-interlink="1">analyse</a>), Guide INERIS DRS-13-125225-06922A (méthodes de dépollution)</p></section>
 
 <section class="section"><h2>Consultations fréquentes</h2><details><summary>Quels sont les polluants les plus fréquents dans les sols lyonnais ?</summary><p>Dans la métropole lyonnaise, on retrouve principalement des hydrocarbures (HCT) liés aux anciennes stations-service, des solvants chlorés (COHV) issus d'activités industrielles historiques, et parfois des métaux lourds (plomb, zinc) dans les remblais urbains. La nappe alluviale du Rhône aggrave la dispersion.</p></details><details><summary>Quelle est la différence entre un traitement in situ et ex situ ?</summary><p>Le traitement in situ (oxydation chimique, bioventilation) intervient sans déplacer le sol : on injecte des réactifs directement dans le terrain. Le traitement ex situ consiste à excaver les terres polluées et à les traiter sur site (andainage, biopiles) ou à les évacuer vers un centre agréé. Le choix dépend du volume, du type de polluant et des délais.</p></details><details><summary>Combien coûte une remédiation des sols contaminés à Lyon ?</summary><p>Les coûts varient fortement selon l'étendue de la pollution et la technique retenue. Pour un projet typique de 500 à 1 500 m³, le budget se situe entre 2 450 € et 10 950 €, incluant le diagnostic, le traitement et le suivi analytique. Un devis précis est établi après reconnaissance initiale.</p></details><details><summary>Quelles normes encadrent la dépollution des sols en France ?</summary><p>La réglementation française repose sur l'arrêté du 2 février 1998 pour les prélèvements, la norme NF X 31-100 pour l'échantillonnage des sols, et le guide INERIS pour les méthodes de traitement. Les objectifs de réhabilitation sont définis au cas par cas selon l'usage futur du site (logement, commerce, industrie).</p></details></section>
 
@@ -173,6 +450,7 @@ img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet
 
 
 <script>
+
 (function(){
   function init(){
     if(typeof L==='undefined'){setTimeout(init,200);return;}
@@ -180,7 +458,7 @@ img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet
     if(!el)return;
     var map=L.map(el).setView([45.7578137,4.8320114],12);
     L.tileLayer('https://{s}.tile-d8b6.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:18}).addTo(map);
-    L.marker([45.7578137,4.8320114]).addTo(map).bindPopup("Lyon").openPopup();
+    L.marker([45.7578137,4.8320114],{icon:L.divIcon({html:'<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 36\" width=\"24\" height=\"36\"><path d=\"M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24c0-6.6-5.4-12-12-12z\" fill=\"#E11D48\" stroke=\"#FFF\" stroke-width=\"1.5\"/><circle cx=\"12\" cy=\"12\" r=\"4\" fill=\"#FFF\"/></svg>',className:'',iconSize:[24,36],iconAnchor:[12,36],popupAnchor:[0,-32]})}).addTo(map).bindPopup("Lyon").openPopup();
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
@@ -200,7 +478,7 @@ img{max-width:100%!important;height:auto!important}</style><link rel="stylesheet
           L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png",{
             attribution:"&copy; OpenStreetMap contributors &copy; CARTO",maxZoom:19,subdomains:"abcd"
           }).addTo(m);
-          L.marker([45.7578137,4.8320114]).addTo(m).bindPopup("Lyon");
+          L.marker([45.7578137,4.8320114],{icon:L.divIcon({html:'<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 36\" width=\"24\" height=\"36\"><path d=\"M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24c0-6.6-5.4-12-12-12z\" fill=\"#E11D48\" stroke=\"#FFF\" stroke-width=\"1.5\"/><circle cx=\"12\" cy=\"12\" r=\"4\" fill=\"#FFF\"/></svg>',className:'',iconSize:[24,36],iconAnchor:[12,36],popupAnchor:[0,-32]})}).addTo(m).bindPopup("Lyon");
         })();
         </script>
         <div style="margin-top:.5rem;font-size:.78rem;color:#888;text-align:center">
